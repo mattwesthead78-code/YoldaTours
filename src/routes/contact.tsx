@@ -1,0 +1,62 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { InquiryForm } from "@/components/inquiry-form";
+import { PageIntro, SiteShell } from "@/components/site-shell";
+import { contacts } from "@/lib/content";
+import { useCopy } from "@/lib/use-copy";
+
+export const Route = createFileRoute("/contact")({ component: Contact });
+
+function Contact() {
+  const { t, contacts: people } = useCopy();
+  const hossein = contacts[0];
+
+  return (
+    <SiteShell>
+      <PageIntro
+        kicker={t("page.contact.kicker")}
+        title={t("page.contact.title")}
+        lede={t("page.contact.lede")}
+      />
+
+      <section className="mx-auto max-w-6xl px-5 pb-20 md:px-8">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <div className="overflow-hidden rounded-[1.5rem]">
+              <img
+                src="/images/river.jpg"
+                alt="Sunset on the Rio Negro"
+                className="img-frame h-56 w-full object-cover"
+              />
+            </div>
+            <ul className="mt-6 space-y-4">
+              {people.map((c) => (
+                <li key={c.id} className="rounded-2xl bg-surface p-5">
+                  <p className="font-display text-2xl">{c.name}</p>
+                  <p className="text-[12px] uppercase tracking-[0.14em] text-muted">
+                    {c.role}
+                  </p>
+                  <a
+                    href={c.wa}
+                    className="mt-3 inline-block text-sm text-fg underline decoration-border underline-offset-4 hover:decoration-fg"
+                  >
+                    WhatsApp {c.phone}
+                  </a>
+                  <a
+                    href={hossein.instagram}
+                    className="mt-2 block text-sm text-muted underline decoration-border underline-offset-4 hover:text-fg"
+                  >
+                    Instagram @yoldaaaaa
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm text-muted">{t("page.contact.replies")}</p>
+          </div>
+          <div className="lg:col-span-7">
+            <InquiryForm />
+          </div>
+        </div>
+      </section>
+    </SiteShell>
+  );
+}
