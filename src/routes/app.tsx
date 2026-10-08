@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Download } from "lucide-react";
 import { AppPhone } from "@/components/app-phone";
+import { DownloadButtons } from "@/components/download-buttons";
 import { PageIntro, SiteShell } from "@/components/site-shell";
-import { androidApk } from "@/lib/content";
 import { useCopy } from "@/lib/use-copy";
 
 export const Route = createFileRoute("/app")({ component: GuestApp });
@@ -26,19 +25,12 @@ function GuestApp() {
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-subtle">
             {t("page.app.note")}
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href={androidApk.href}
-              download={androidApk.fileName}
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-fg px-5 text-sm font-medium text-bg transition-transform duration-150 active:scale-[0.96]"
-            >
-              <Download className="size-4" />
-              {t("cta.download")}
-            </a>
-            <p className="text-[12px] uppercase tracking-[0.16em] text-subtle">
-              {t("page.app.android")} · {t("page.app.version")}
-            </p>
+          <div className="mt-8">
+            <DownloadButtons prominent />
           </div>
+          <p className="mt-3 text-[12px] uppercase tracking-[0.16em] text-subtle">
+            {t("page.app.android")} · {t("page.app.ios")} · {t("page.app.version")}
+          </p>
           <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.2em] text-accent">
             {t("page.app.also")}
           </p>

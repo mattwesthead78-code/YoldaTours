@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { DownloadButtons } from "@/components/download-buttons";
 import { SiteShell } from "@/components/site-shell";
-import { androidApk } from "@/lib/content";
 import { useCopy } from "@/lib/use-copy";
 
 export const Route = createFileRoute("/")({ component: Home });
@@ -28,21 +28,14 @@ function Home() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-fg/80 md:text-lg">
             {company.lede}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               to="/contact"
               className="inline-flex min-h-11 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg transition-transform duration-150 active:scale-[0.96]"
             >
               {t("cta.talk")}
             </Link>
-            <a
-              href={androidApk.href}
-              download={androidApk.fileName}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-medium text-fg shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-fg)_28%,transparent)] transition-transform duration-150 active:scale-[0.96]"
-            >
-              <Download className="size-4" />
-              {t("cta.download")}
-            </a>
+            <DownloadButtons />
           </div>
         </div>
       </section>

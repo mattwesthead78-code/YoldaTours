@@ -12,6 +12,12 @@ export const androidApk = {
   version: "1.0",
 } as const;
 
+export const iosApp = {
+  href: "/downloads/YoldaTours-iOS.zip",
+  fileName: "YoldaTours-iOS.zip",
+  version: "1.0",
+} as const;
+
 export const contacts = [
   {
     id: "hossein",

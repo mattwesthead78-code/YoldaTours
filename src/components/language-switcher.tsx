@@ -82,7 +82,7 @@ export function LanguageSwitcher({
           role="listbox"
           aria-label={t("chrome.language")}
           className={cn(
-            "absolute top-[calc(100%+8px)] z-50 min-w-[13.5rem] overflow-hidden rounded-2xl bg-surface py-1.5 shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-fg)_14%,transparent),0_24px_48px_-24px_rgba(0,0,0,0.7)]",
+            "absolute top-[calc(100%+8px)] z-50 max-h-[70vh] min-w-[13.5rem] overflow-y-auto rounded-2xl bg-surface py-1.5 shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-fg)_14%,transparent),0_24px_48px_-24px_rgba(0,0,0,0.7)]",
             align === "right" ? "right-0" : "left-0",
           )}
         >

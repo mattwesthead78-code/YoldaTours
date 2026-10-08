@@ -10,7 +10,7 @@ import {
 import { messages, type MessageKey } from "@/lib/messages";
 import { cn } from "@/lib/utils";
 
-export const locales = ["en", "es", "pt", "fr", "de", "zh"] as const;
+export const locales = ["en", "es", "pt", "fr", "de", "zh", "fa", "tr"] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeMeta: Record<
@@ -23,6 +23,8 @@ export const localeMeta: Record<
   fr: { name: "French", native: "Français", html: "fr" },
   de: { name: "German", native: "Deutsch", html: "de" },
   zh: { name: "Chinese", native: "中文", html: "zh-CN" },
+  fa: { name: "Persian", native: "فارسی", html: "fa" },
+  tr: { name: "Turkish", native: "Türkçe", html: "tr" },
 };
 
 const STORAGE_KEY = "yolda-locale";
@@ -45,6 +47,8 @@ function detectLocale(): Locale {
   if (nav.startsWith("fr")) return "fr";
   if (nav.startsWith("de")) return "de";
   if (nav.startsWith("zh")) return "zh";
+  if (nav.startsWith("fa")) return "fa";
+  if (nav.startsWith("tr")) return "tr";
   return "en";
 }
 
@@ -65,6 +69,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = localeMeta[locale].html;
+    document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
   }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
@@ -154,6 +159,25 @@ export function Flag({
           <polygon
             points="4.2,3.2 4.9,5.4 2.8,4.1 5.6,4.1 3.5,5.4"
             fill="#FFDE00"
+          />
+        </>
+      ) : null}
+      {locale === "fa" ? (
+        <>
+          <rect width="21" height="5" fill="#239F40" />
+          <rect y="5" width="21" height="5" fill="#fff" />
+          <rect y="10" width="21" height="5" fill="#DA0000" />
+          <circle cx="10.5" cy="7.5" r="1.35" fill="#DA0000" />
+        </>
+      ) : null}
+      {locale === "tr" ? (
+        <>
+          <rect width="21" height="15" fill="#E30A17" />
+          <circle cx="8.4" cy="7.5" r="3.1" fill="#fff" />
+          <circle cx="9.25" cy="7.5" r="2.45" fill="#E30A17" />
+          <polygon
+            points="12.1,7.5 11.35,7.05 11.55,7.9 10.85,7.35 11.7,7.35 11,7.9 11.2,7.05"
+            fill="#fff"
           />
         </>
       ) : null}
